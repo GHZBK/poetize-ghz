@@ -1,0 +1,91 @@
+# =========================
+# 🌟 项目全局配置文件
+# =========================
+
+server:
+  port: 4145 # 🌐 服务端口，Spring Boot 应用启动后访问 http://localhost:8081
+  tomcat:
+    threads.max: 50 # Tomcat 最大工作线程数（同时处理请求数）
+    max-connections: 100 # Tomcat 最大并发连接数
+    max-http-form-post-size: 120MB # HTTP 表单最大提交数据大小（POST请求）
+    connection-timeout: 60000 # 连接超时时间（毫秒）
+
+# =========================
+# 🔥 MyBatis-Plus 配置
+# =========================
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml # Mapper XML 文件路径，支持通配符
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启SQL日志打印（开发调试用）
+  global-config:
+    db-config:
+      logic-delete-value: 1 # 逻辑删除标记值（已删除标识）
+      logic-not-delete-value: 0 # 逻辑删除标记值（未删除标识）
+
+# =========================
+# 📦 文件上传配置
+# =========================
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB # 单个文件最大上传大小
+      max-request-size: 100MB # 单次请求最大上传总大小
+
+  # =======================
+  # 📧 邮件服务配置（QQ邮箱）
+  # =======================
+  mail:
+    host: smtp.qq.com # QQ 邮件服务器地址
+    port: 465 # SMTP SSL端口（QQ邮箱为465）
+    custom:
+      username: 2443063059@qq.com
+      password: irekqruedjzqeaai
+    protocol: smtp # 协议
+    default-encoding: UTF-8 # 邮件内容编码
+    properties:
+      mail:
+        smtp:
+          auth: true # 开启SMTP认证
+          ssl:
+            enable: true # 开启SSL
+          socketFactory:
+            class: jakarta.net.ssl.SSLSocketFactory
+            port: 465
+        debug: true # 开启调试日志（开发用，生产建议关掉）                # 开启调试日志（开发用，生产建议关掉）
+
+  # =======================
+  # 🗄 数据库连接配置
+  # =======================
+  datasource:
+    username: root # 数据库用户名
+    password: 123456 # 数据库密码
+    url: jdbc:mysql://localhost:3306/poetize?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    type: com.alibaba.druid.pool.DruidDataSource # 使用Druid连接池
+    driver-class-name: com.mysql.cj.jdbc.Driver # MySQL驱动
+
+# =========================
+# 👤 自定义用户配置（业务相关）
+# =========================
+user:
+  code:
+    format: "USER-{yyyyMMdd}-{random4}" # 用户验证码格式（示例：USER-20250703-4832）
+  subscribe:
+    format: "SUB-{yyyyMM}-{random6}" # 订阅号格式（示例：SUB-202507-912384）
+
+# =========================
+# 📁 文件存储相关配置
+# =========================
+store:
+  type: local # 存储类型（local 本地存储，qiniu 七牛云，oss 阿里云OSS等）
+
+local:
+  enable: true # 是否启用本地存储
+  uploadUrl: "/data/uploads/" # 本地文件上传目录（绝对路径）
+  downloadUrl: "http://localhost:4145/files/" # 本地文件下载访问地址
+
+qiniu:
+  enable: false # 是否启用七牛云存储
+  accessKey: your_qiniu_access_key # 七牛云 AccessKey
+  secretKey: your_qiniu_secret_key # 七牛云 SecretKey
+  bucket: your_bucket_name # 七牛云存储空间名
+  downloadUrl: http://cdn.yourdomain.com/ # 七牛云绑定的下载域名
