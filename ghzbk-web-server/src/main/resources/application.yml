@@ -3,7 +3,7 @@
 # =========================
 
 server:
-  port: 4145 # 🌐 服务端口，Spring Boot 应用启动后访问 http://localhost:8081
+  port: 8080 
   tomcat:
     threads.max: 50 # Tomcat 最大工作线程数（同时处理请求数）
     max-connections: 100 # Tomcat 最大并发连接数
@@ -36,10 +36,10 @@ spring:
   # =======================
   mail:
     host: smtp.qq.com # QQ 邮件服务器地址
-    port: 465 # SMTP SSL端口（QQ邮箱为465）
+    port: 465 
     custom:
-      username: 2443063059@qq.com
-      password: irekqruedjzqeaai
+      username: 
+      password: 
     protocol: smtp # 协议
     default-encoding: UTF-8 # 邮件内容编码
     properties:
@@ -58,8 +58,8 @@ spring:
   # =======================
   datasource:
     username: root # 数据库用户名
-    password: 123456 # 数据库密码
-    url: jdbc:mysql://localhost:3306/poetize?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    password: 1 # 数据库密码
+    url: jdbc:mysql://localhost:3306/1?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     type: com.alibaba.druid.pool.DruidDataSource # 使用Druid连接池
     driver-class-name: com.mysql.cj.jdbc.Driver # MySQL驱动
 
